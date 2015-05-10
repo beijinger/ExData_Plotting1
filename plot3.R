@@ -18,8 +18,17 @@ plot3 <- function() {
            ylab = "Energy sub metering")
       lines(shortDT$Timestamp,shortDT$Sub_metering_2,col="red")
       lines(shortDT$Timestamp,shortDT$Sub_metering_3,col="blue")
+
+      ## when graph was reproduced in RStudio exactly as required, I noticed that
+      ##legend was not being saved correctly as png file - text was sticking
+      ## out of border box. In order to address the problem I removed the border
+      ##of the legend with bty="n" option, moved it away from corner with
+      ##inset=0.15 option and reduced fint size with cex=0.8. Taking out those
+      ##minor modifications brings us back to the plot in instructions, but
+      ##yields a png file with completely corrupted legend box.
+
       legend("topright", c("Sub_metering_1","Sub_metering_2","Sub_metering_3"),
-             col=c("black","red","blue"),inset=0.2,lty=c(1,1,1),bty="n",cex=0.8)
+             col=c("black","red","blue"),inset=0.15,lty=c(1,1,1),bty="n",cex=0.8)
       dev.copy(png,file="plot3.png")
       dev.off()
 
